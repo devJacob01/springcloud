@@ -6,6 +6,8 @@ spring:
     value: dev 
   application:
     name: sample-service
+#  main: 
+#    web-application-type: none
   #logging
   logging:
     pattern:
