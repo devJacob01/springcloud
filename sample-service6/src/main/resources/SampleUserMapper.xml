@@ -18,6 +18,15 @@
 	    from tb_user;
 	</select>	
 	
+	<select id="selectUserById" parameterType="String" resultType="sampleUser">
+	    select 
+	    	user_id,
+	    	user_nm,
+	    	addr
+	    from tb_user
+	    where user_id = #{userId}
+	</select>		
+	
 	
 	<select id="selectTest" resultType="int">
 	    select 

@@ -18,6 +18,14 @@ public interface SampleUserDao {
 	List<SampleUser> selectUser2() throws Exception;		
 	
 	/**
+	 * 아이디로 사용자 정보 조회하
+	 * @param userId
+	 * @return
+	 * @throws Exception
+	 */
+	SampleUser selectUserById(String userId) throws Exception;	
+	
+	/**
 	 * 사용자 정보 변경하
 	 * @param sampleUser
 	 * @return

@@ -30,7 +30,7 @@ public class HelloController {
 	
 	
 	
-	@ApiOperation(value="사용자 정보 가져오기  DB ")
+	@ApiOperation(value="사용자 정보 가져오기 ")
 	@RequestMapping(value="/users", method=RequestMethod.GET)
 	public ResponseEntity <List<SampleUser>> getUserList() { 
 		
@@ -39,7 +39,6 @@ public class HelloController {
 			log.info("Start db select");
 			list = sampleUserDao.selectUser();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		log.debug("user counts :"+list.size());
@@ -64,8 +63,23 @@ public class HelloController {
 		return new ResponseEntity<List<SampleUser>> (list, HttpStatus.OK);
 	}
 	
+	@ApiOperation(value="아이디로 사용자 정보 가져오기 ")
+	@RequestMapping(value="/users/{userId}", method=RequestMethod.GET)
+	public ResponseEntity <SampleUser> getUsserById(
+				@PathVariable (name="userId", required = true) String userId
+			) { 
+		SampleUser re = null;
+		try {
+			log.info("Start db select");
+			re = sampleUserDao.selectUserById(userId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ResponseEntity<SampleUser> (re, HttpStatus.OK);
+	}
+	
 	@ApiOperation(value="사용자 정보 변경하기 ")
-	@RequestMapping(value="/users/{userId}", method=RequestMethod.POST)
+	@RequestMapping(value="/users/{userId}", method=RequestMethod.PUT)
 	public ResponseEntity <String > setUserUpdate(
 			@PathVariable(name="userId",required = true ) String userId, 
 			@RequestBody SampleUser sampleUer
@@ -81,7 +95,7 @@ public class HelloController {
 	}
 	
 	@ApiOperation(value="사용자 정보 등록하기 ")
-	@RequestMapping(value="/users/{userId}", method=RequestMethod.PUT)
+	@RequestMapping(value="/users/{userId}", method=RequestMethod.POST)
 	public ResponseEntity <String > setUserInsert(
 			@PathVariable(name="userId",required = true ) String userId, 
 			@RequestBody SampleUser sampleUer
@@ -96,7 +110,7 @@ public class HelloController {
 		return new ResponseEntity<String> (re+"", HttpStatus.OK);
 	}
 	
-	@ApiOperation(value="사용자 정보 삭하기 ")
+	@ApiOperation(value="사용자 정보 삭제하기 ")
 	@RequestMapping(value="/users/{userId}", method=RequestMethod.DELETE)
 	public ResponseEntity <String > setUserDelete(
 			@PathVariable(name="userId",required = true ) String userId
