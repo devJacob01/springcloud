@@ -9,9 +9,8 @@ spring:
   # database
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://173.193.107.21:3306/koscomdb
-#    driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-#    url: jdbc:log4jdbc:mysql://173.193.107.21:3306/koscomdb
+#    url: jdbc:mysql://173.193.107.21:3306/koscomdb
+    url: jdbc:mysql://169.56.164.51:30072/koscomdb?useUnicode=true&characterEncoding=utf-8
     username: koscom
     password: "!koscom00"
     sql-script-encoding: utf-8
@@ -29,9 +28,11 @@ logging:
       console: "%clr(%d{yyyy-MM-dd HH:mm:ss}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr([${springAppName:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-}]){yellow} %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}" 
    level: 
       org.springframework: warn
+      com.koscom.microservices: debug
   
 mybatis:
     mapper-locations: classpath:*.xml
     #check-config-location: true
     configuration:
         map-underscore-to-camel-case: true
+    type-aliases-package: com.koscom.microservices.sample
