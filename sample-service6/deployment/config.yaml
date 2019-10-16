@@ -10,8 +10,8 @@ nameOverride: ""
 fullnameOverride: ""
 
 env:
-  AUTH_API_URI: http://login-api.169.56.164.52.nip.io
-  API_PRODUCT_URI: http://mvp-sample-bizlogic.169.56.164.52.nip.io/api/products
+#  AUTH_API_URI: http://login-api.169.56.164.52.nip.io
+#  API_PRODUCT_URI: http://mvp-sample-service6.169.56.164.52.nip.io/api/products
   JWT_SECRET: MySecretKey
   PORT: 8090
 
@@ -24,7 +24,7 @@ ingress:
     kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: sample-service6.169.56.164.52.nip.io
+    - host: mvp-sample-service6.169.56.164.52.nip.io
       paths: [ "/" ]
 
   tls: []
