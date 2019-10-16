@@ -1,19 +1,15 @@
-FROM node
+FROM java:8
 # Add an docker user, make work dir
 RUN adduser --disabled-password --gecos "" docker && \
   echo "docker ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
-  mkdir -p /home/docker/sample-service6 && \
-  chown docker:docker /home/docker/sample-service6
+  mkdir -p /home/docker/app && \
+  chown docker:docker /home/docker/app
 
-ENV MONGO_DB_LOGIN_API mongodb://admin:passw0rd@169.56.164.254/users
-ENV JWT_SECRET MySecret
-
-WORKDIR /home/docker/sample-service6
+WORKDIR /home/docker/app
 
 COPY . ./
 
-RUN npm install && npm install nodemon --global
 
 # RUN as docker user
 USER docker
-CMD nodemon
+CMD java -jar sample-service6.jar
