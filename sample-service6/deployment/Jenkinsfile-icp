@@ -38,8 +38,18 @@ podTemplate(
 		stageName = "Get Source"	
 		stage(stageName) {
 			echo "**** START : " + stageName
-			git url: "https://github.com/devJacob01/springcloud.git", branch: "master"		
-			// git url: "https://github.com/devJacob01/springcloud.git", branch: "master", credentialsId: "auth_gitlab"		
+			// git url: "https://github.com/devJacob01/springcloud.git", branch: "master"		
+			// git url: "https://github.com/devJacob01/springcloud.git", branch: "master", credentialsId: "auth_gitlab"	
+			  try{
+       				GIT_REPO_URL = null
+			        command = "grep -oP '(?<=url>)[^<]+' /var/lib/jenkins/jobs/${JOB_NAME}/config.xml"
+			        GIT_REPO_URL = sh(returnStdout: true, script: command).trim();
+			        echo "Detected Git Repo URL: ${GIT_REPO_URL}"  
+			    }
+			    catch(err){
+			        throw err
+			        error "Colud not find any Git repository for the job ${JOB_NAME}"
+			  }	
 		}
 
 		//-- 환경변수 파일 읽어서 변수값 셋팅
