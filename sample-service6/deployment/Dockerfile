@@ -15,7 +15,7 @@ EXPOSE 80
 WORKDIR $VERTICLE_HOME
 
 # Copy your fat jar to the container
-COPY target/sample-service6-0.0.1-SNAPSHOT.jar $VERTICLE_HOME/
+COPY ./sample-service6/target/sample-service6-0.0.1-SNAPSHOT.jar $VERTICLE_HOME/
 
 # Launch the verticle
 ENTRYPOINT ["sh", "-c"]
