@@ -12,4 +12,4 @@ COPY . ./
 
 # RUN as docker user
 USER docker
-CMD java -jar sample-service6.jar
+CMD java -jar target/sample-service6.jar
