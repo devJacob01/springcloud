@@ -30,7 +30,8 @@ podTemplate(
 	//volume mount
 	volumes: [
 		hostPathVolume(hostPath: "/var/run/docker.sock", mountPath: "/var/run/docker.sock"),
-		nfsVolume(mountPath: '/root/.m2', serverAddress: '169.56.164.243', serverPath: '/nfs/.m2', readOnly: true)
+		hostPathVolume(hostPath: '/maven/.m2', mountPath: '/root/.m2')
+		//nfsVolume(mountPath: '/root/.m2', serverAddress: '169.56.164.243', serverPath: '/nfs/.m2', readOnly: true)
 	]
 ) 
 {
