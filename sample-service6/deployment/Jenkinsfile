@@ -1,4 +1,4 @@
-def label = "login-api-${UUID.randomUUID().toString()}"
+def label = "sample-service6-${UUID.randomUUID().toString()}"
 
 /* -------- functions ---------- */
 def notifySlack(STATUS, COLOR) {
@@ -34,7 +34,7 @@ podTemplate(
 {
 	node(label) {
 		stage("Get Source") {
-			git "https://github.com/happycloudpak/login-api.git"
+			git "https://github.com/devJacob01/springcloud.git"
 		}
 
 		//-- 환경변수 파일 읽어서 변수값 셋팅
@@ -63,8 +63,8 @@ podTemplate(
 			stage("Inspection Code") {
 				container("scanner") {
 					sh "sonar-scanner \
-						-Dsonar.projectName=login-api  \
-						  -Dsonar.projectKey=login-api \
+						-Dsonar.projectName=sample-service6  \
+						  -Dsonar.projectKey=sample-service6 \
 						  -Dsonar.sources=. \
 						  -Dsonar.host.url=http://sonarqube.169.56.164.254.nip.io:30630 \
 						  -Dsonar.login=9fff21be787d1354bdbb34549302dcd8d935a094"
