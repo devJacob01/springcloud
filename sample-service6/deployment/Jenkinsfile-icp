@@ -60,6 +60,7 @@ podTemplate(
 		def dockerRegistry = props["dockerRegistry"]
 		def credentialRegistry=props["credentialRegistry"]
 		def image = props["image"]
+		def baseDir = props["baseDir"]
 		def baseDeployDir = props["baseDeployDir"]
 		def helmRepository = props["helmRepository"]
 		def helmChartname = props["helmChartname"]
@@ -76,7 +77,7 @@ podTemplate(
 			stage(stageName) {
 				echo "**** START : " + stageName
 				container('maven') {
-						sh "mvn -B clean package"
+						sh "mvn -B -f ${baseDir} clean package"
 				}
 			}		
 
