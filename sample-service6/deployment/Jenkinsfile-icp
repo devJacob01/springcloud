@@ -30,8 +30,9 @@ podTemplate(
 	//volume mount
 	volumes: [
 		hostPathVolume(hostPath: "/var/run/docker.sock", mountPath: "/var/run/docker.sock"),
-		hostPathVolume(hostPath: '/maven/.m2', mountPath: '/root/.m2') 
-		//nfsVolume(mountPath: '/root/.m2', serverAddress: '169.56.164.243', serverPath: '/nfs/.m2', readOnly: false)
+		//hostPathVolume(hostPath: '/maven/.m2', mountPath: '/root/.m2') 
+		//you can NFS SERVER as followed
+		nfsVolume(mountPath: '/root/.m2', serverAddress: '169.56.164.243', serverPath: '/nfs/.m2', readOnly: false)
 	]
 ) 
 {
@@ -173,7 +174,7 @@ podTemplate(
 						}	
 					} else {
 						//없는 경우는 helm repository에서 설치
-						echo "Helm chart doesn't exist !" 
+						echo "Helm chart doesn't exist on git. so, install from helm registry !" 
 						
 						sh "helm init"	//tiller 설치								
 						
