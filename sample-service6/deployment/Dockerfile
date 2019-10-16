@@ -1,7 +1,7 @@
 FROM java:8-jre 
 
 #Get APP home directory using --build-arg
-ARG APP_HOME=.
+#ARG APP_HOME=.
 
 ENV VERTICLE_FILE sample-service6.jar
 # Set the location of the verticles
@@ -18,7 +18,8 @@ EXPOSE 80
 WORKDIR $VERTICLE_HOME
 
 # Copy your fat jar to the container
-COPY ${APP_HOME}/sample-service6/target/$VERTICLE_FILE $VERTICLE_HOME
+#COPY ${APP_HOME}/sample-service6/target/$VERTICLE_FILE $VERTICLE_HOME
+COPY ./sample-service6/target/$VERTICLE_FILE $VERTICLE_HOME
 
 # Launch the verticle
 ENTRYPOINT ["sh", "-c"]
