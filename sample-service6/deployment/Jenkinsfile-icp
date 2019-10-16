@@ -29,7 +29,8 @@ podTemplate(
 	],
 	//volume mount
 	volumes: [
-		hostPathVolume(hostPath: "/var/run/docker.sock", mountPath: "/var/run/docker.sock")
+		hostPathVolume(hostPath: "/var/run/docker.sock", mountPath: "/var/run/docker.sock"),
+		nfsVolume(mountPath: '/root/.m2', serverAddress: '169.56.164.243', serverPath: '/nfs/.m2', readOnly: true)
 	]
 ) 
 {
@@ -79,7 +80,7 @@ podTemplate(
 				container('maven') {
 						sh "mvn -B -f ${baseDir} clean package"
 						echo "*** RESULT ***"
-						sh "ls -al"
+						sh "ls -al ${baseDir}"
 				}
 			}		
 
