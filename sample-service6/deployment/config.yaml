@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: happycloudpak/sample-service6
-  tag: 1.1.6
+  tag: latest
   pullPolicy: Always
 
 imagePullSecrets: []
@@ -10,10 +10,7 @@ nameOverride: ""
 fullnameOverride: ""
 
 env:
-#  AUTH_API_URI: http://login-api.169.56.164.52.nip.io
-#  API_PRODUCT_URI: http://mvp-sample-service6.169.56.164.52.nip.io/api/products
-  JWT_SECRET: MySecretKey
-  PORT: 8090
+  PORT: 80
 
 service:
   type: ClusterIP
@@ -24,7 +21,7 @@ ingress:
     kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: mvp-sample-service6.169.56.164.52.nip.io
+    - host: sample-service6.169.56.164.52.nip.io
       paths: [ "/" ]
 
   tls: []
