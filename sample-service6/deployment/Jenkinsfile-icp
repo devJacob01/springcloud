@@ -78,6 +78,7 @@ podTemplate(
 				echo "**** START : " + stageName
 				container('maven') {
 						sh "mvn -B -f ${baseDir} clean package"
+						echo "*** RESULT ***"
 						sh "ls -al"
 				}
 			}		
