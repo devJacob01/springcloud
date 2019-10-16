@@ -81,6 +81,7 @@ podTemplate(
 				container('maven') {
 						sh "mvn -B -f ${baseDir} clean package"
 						echo "*** RESULT ***"
+						sh "pwd"
 						sh "ls -al ${baseDir}"
 				}
 			}		
