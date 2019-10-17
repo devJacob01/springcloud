@@ -10,7 +10,7 @@ nameOverride: ""
 fullnameOverride: ""
 
 env:
-  PORT: 80
+  PORT: 10000
 
 service:
   type: NodePort
